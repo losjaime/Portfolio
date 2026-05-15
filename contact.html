@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get in touch with Carlos Jaime — developer open to new opportunities.">
+  <title>Contact — Carlos Jaime</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ── Navigation ─────────────────────────────────────────────────────── -->
+  <header>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand">CJ</a>
+      <button class="nav__toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+      <ul class="nav__links">
+        <li><a href="index.html"    class="nav__link">About</a></li>
+        <li><a href="projects.html" class="nav__link">Projects</a></li>
+        <li><a href="contact.html"  class="nav__link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ── Page Header ────────────────────────────────────────────────────── -->
+    <section class="contact-hero section" aria-label="Contact introduction">
+      <div class="container--narrow">
+        <h1 class="page-title">Get In Touch</h1>
+        <p class="page-subtitle">
+          Have a project in mind or want to connect? I'd love to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Contact Form ───────────────────────────────────────────────────── -->
+    <section class="contact section">
+      <div class="container--narrow">
+
+        <form class="contact-form glass-card" id="contactForm" novalidate>
+
+          <div class="form-group">
+            <label class="form-label" for="name">Name</label>
+            <input
+              class="form-input"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Jane Smith"
+              autocomplete="name"
+            >
+            <span class="form-error" id="name-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input
+              class="form-input"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="jane@example.com"
+              autocomplete="email"
+            >
+            <span class="form-error" id="email-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea
+              class="form-input form-input--textarea"
+              id="message"
+              name="message"
+              placeholder="Tell me about your project or say hello..."
+              rows="5"
+            ></textarea>
+            <span class="form-error" id="message-error" role="alert" aria-live="polite"></span>
+          </div>
+
+          <button class="btn btn--solid" type="submit">Send Message</button>
+
+          <div class="form-success" id="formSuccess" hidden>
+            Your message was sent — I'll be in touch soon!
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <p class="footer__text">Designed &amp; built by Carlos Jaime &copy; 2026</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
