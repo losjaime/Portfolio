@@ -37,7 +37,7 @@
   });
 })();
 
-/* ─── Contact Form Validation ────────────────────────────────────────────── */
+/* ─── Contact Form Validation + Submission ───────────────────────────────── */
 (function () {
   var form = document.getElementById('contactForm');
   if (!form) return;
@@ -80,18 +80,51 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+
     var allValid = Object.keys(rules).map(validateField).every(Boolean);
-    if (allValid) {
-      form.reset();
-      Object.keys(rules).forEach(function (id) {
-        var f = document.getElementById(id);
-        if (f) f.classList.remove('form-input--error');
-        var err = document.getElementById(id + '-error');
-        if (err) err.textContent = '';
-      });
-      var success = document.getElementById('formSuccess');
-      if (success) success.hidden = false;
-    }
+    if (!allValid) return;
+
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var formError = document.getElementById('formSuccess');
+
+    // Loading state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+
+    var payload = {
+      name:    document.getElementById('name').value.trim(),
+      email:   document.getElementById('email').value.trim(),
+      message: document.getElementById('message').value.trim(),
+      website: document.getElementById('website') ? document.getElementById('website').value : ''
+    };
+
+    fetch('contact.php', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.success) {
+        form.reset();
+        Object.keys(rules).forEach(function (id) {
+          var f = document.getElementById(id);
+          if (f) f.classList.remove('form-input--error');
+          var err = document.getElementById(id + '-error');
+          if (err) err.textContent = '';
+        });
+        if (formError) formError.hidden = false;
+      } else {
+        alert(data.error || 'Something went wrong. Please try again.');
+      }
+    })
+    .catch(function () {
+      alert('Could not send your message. Please check your connection and try again.');
+    })
+    .finally(function () {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    });
   });
 })();
 

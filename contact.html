@@ -29,7 +29,7 @@
       <div class="container--narrow">
         <h1 class="page-title">Get In Touch</h1>
         <p class="page-subtitle">
-          Have a project in mind or want to connect? I'd love to hear from you.
+          Want to connect? I'd love to hear from you.
         </p>
       </div>
     </section>
@@ -40,6 +40,12 @@
 
         <form class="contact-form glass-card" id="contactForm" novalidate>
 
+          <!-- Honeypot — hidden from real users, bots fill it in -->
+          <div class="form-honeypot" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
           <div class="form-group">
             <label class="form-label" for="name">Name</label>
             <input
@@ -47,7 +53,6 @@
               type="text"
               id="name"
               name="name"
-              placeholder="Jane Smith"
               autocomplete="name"
             >
             <span class="form-error" id="name-error" role="alert" aria-live="polite"></span>
@@ -60,7 +65,6 @@
               type="email"
               id="email"
               name="email"
-              placeholder="jane@example.com"
               autocomplete="email"
             >
             <span class="form-error" id="email-error" role="alert" aria-live="polite"></span>
@@ -72,7 +76,6 @@
               class="form-input form-input--textarea"
               id="message"
               name="message"
-              placeholder="Tell me about your project or say hello..."
               rows="5"
             ></textarea>
             <span class="form-error" id="message-error" role="alert" aria-live="polite"></span>
@@ -93,6 +96,9 @@
 
   <!-- ── Footer ─────────────────────────────────────────────────────────── -->
   <footer class="footer">
+    <div class="footer__links">
+      <a href="https://www.linkedin.com/in/carlos-jaime-/" class="footer__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
     <p class="footer__text">Designed &amp; built by Carlos Jaime &copy; 2026</p>
   </footer>
 

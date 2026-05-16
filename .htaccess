@@ -1,0 +1,45 @@
+# ── Directory Listing ────────────────────────────────────────────────────────
+Options -Indexes
+
+# ── Security Headers ─────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Prevent MIME-type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Control referrer info sent to external sites
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Disable browser features not used by this site
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+  # Content Security Policy
+  # Allows: local files, Google Fonts (styles + font files), no inline scripts
+  Header always set Content-Security-Policy "default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"
+
+  # Remove server version info from responses
+  Header always unset X-Powered-By
+  Header always unset Server
+</IfModule>
+
+# ── Block Access to Sensitive Files ──────────────────────────────────────────
+<FilesMatch "\.(htaccess|htpasswd|env|log|sh|sql|bak|config|ini)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order Allow,Deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# ── PHP Error Display Off (production) ───────────────────────────────────────
+<IfModule mod_php.c>
+  php_flag display_errors off
+  php_flag log_errors on
+</IfModule>
+
+# ── Charset ───────────────────────────────────────────────────────────────────
+AddDefaultCharset UTF-8

@@ -258,6 +258,23 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--color-text-muted);
 }
 
+.footer__links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.footer__link {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  transition: color var(--transition-base);
+}
+
+.footer__link:hover {
+  color: var(--color-accent);
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    INDEX.HTML — About Me
 ═══════════════════════════════════════════════════════════════════════════ */
@@ -542,6 +559,18 @@ button { font-family: inherit; cursor: pointer; }
   font-size: 0.8rem;
   color: var(--color-error);
   min-height: 1.1rem;
+}
+
+/* Honeypot — visually hidden but present in DOM so bots find it */
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  tabindex: -1;
 }
 
 .form-success {
